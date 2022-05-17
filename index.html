@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="favv.ico">
+    <link rel="stylesheet" href="bootstrap.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+    </script>
+    <title>Peak Link Task</title>
+    <style>
+        /* Center the loader */
+        #loader {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            z-index: 1;
+            width: 120px;
+            height: 120px;
+            margin: -76px 0 0 -76px;
+            border: 16px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 16px solid #3498db;
+            -webkit-animation: spin 2s linear infinite;
+            animation: spin 1s linear infinite;
+        }
+
+        @-webkit-keyframes spin {
+            0% {
+                -webkit-transform: rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Add animation to "page content" */
+        .animate-bottom {
+            position: relative;
+            -webkit-animation-name: animatebottom;
+            -webkit-animation-duration: 1s;
+            animation-name: animatebottom;
+            animation-duration: 1s
+        }
+
+        @-webkit-keyframes animatebottom {
+            from {
+                bottom: -100px;
+                opacity: 0
+            }
+
+            to {
+                bottom: 0px;
+                opacity: 1
+            }
+        }
+
+        @keyframes animatebottom {
+            from {
+                bottom: -100px;
+                opacity: 0
+            }
+
+            to {
+                bottom: 0;
+                opacity: 1
+            }
+        }
+
+        #myDiv {
+            display: none;
+            text-align: center;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic&display=swap');
+
+        body {
+            background-color: rgba(255, 255, 255, 0.959);
+            color: black;
+            font-size: 20px;
+        }
+
+        .dark-mode {
+            background-color: rgba(20, 28, 44, 0.952);
+            color: rgba(255, 255, 255, 0.925) !important;
+            font-size: 20px;
+        }
+        
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: rgba(14, 20, 31, 0.952);
+        }
+
+        li {
+            float: left;
+        }
+
+        li a {
+            display: block;
+            color: white;
+
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        .activee {
+            background-color: #04AA6D !important;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Verdana, sans-serif;
+        }
+
+        .mySlides {
+            display: none;
+        }
+
+        img {
+            vertical-align: middle;
+        }
+
+        /* Slideshow container */
+        .slideshow-container {
+            max-width: 1000px;
+            position: relative;
+            margin: auto;
+        }
+
+        /* Caption text */
+        .text {
+            color: #f2f2f2;
+            font-size: 15px;
+            padding: 8px 12px;
+            position: absolute;
+            bottom: 8px;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* Number text (1/3 etc) */
+        .numbertext {
+            color: #f2f2f2;
+            font-size: 12px;
+            padding: 8px 12px;
+            position: absolute;
+            top: 0;
+        }
+
+        /* The dots/bullets/indicators */
+        .dot {
+            height: 15px;
+            width: 15px;
+            margin: 0 2px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+
+        .active {
+            background-color: #717171;
+        }
+
+        /* Fading animation */
+        .fade {
+            animation-name: fade;
+            animation-duration: 4s;
+        }
+
+        @keyframes fade {
+            from {
+                opacity: .6
+            }
+
+            to {
+                opacity: 1
+            }
+        }
+
+        /* On smaller screens, decrease text size */
+        @media only screen and (max-width: 300px) {
+            .text {
+                font-size: 11px
+            }
+        }
+        
+        /* start overlay image */
+        .row {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 4px;
+}
+
+/* Create four equal columns that sits next to each other */
+.column {
+  flex: 33.3333%;
+  max-width: 33.3333%;
+  padding: 0 4px;
+}
+
+.column img {
+  margin-top: 8px;
+  vertical-align: middle;
+  width: 100%;
+}
+
+/* Responsive layout - makes a two column-layout instead of four columns */
+@media screen and (max-width: 800px) {
+  .column {
+    flex: 50%;
+    max-width: 50%;
+  }
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column {
+    flex: 100%;
+    max-width: 100%;
+  }
+}
+.conta {
+  position: relative;
+}
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color:rgba(49, 49, 49, 0.603) ;
+  opacity: 0.9;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  -webkit-transform: scale(0);
+  -ms-transform: scale(0);
+  transform: scale(0);
+  -webkit-transition: .3s ease;
+  transition: .3s ease;
+}
+
+.conta:hover .overlay {
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+}
+
+.text {
+  color: rgb(238, 231, 231);
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+/* end overlay image */
+    </style>
+</head>
+
+
+<body onload="myLoader()" style="margin:0;">
+
+    <div id="loader"></div>
+    <div style="display:none;" id="myDiv" class="animate-bottom">
+        <ul>
+            <li style="float:left"><a class="activee" href="#"><img src="27.png" alt="Logo" style="width:50px;"></a>
+            </li>
+            <button type="button" id="langu" class="btn dropdown-toggle" data-bs-toggle="dropdown"
+                style="color:rgba(255, 255, 255, 0.925); float:right; margin-top: 15px;">
+                Language
+            </button>
+            <ul class="dropdown-menu" style="float: bottom;">
+                <li><a id="arabic" href="#" style="color:rgba(14, 20, 31, 0.952) ;">Arabic</a></li>
+                <li><a id="english" href="#" style="color: rgba(14, 20, 31, 0.952);">English</a></li>
+            </ul>
+            <form action="/action_page.php" class="click " onclick="myFunction()"
+                style="float:right; margin-top: 20px;">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="mySwitch" name="darkmode" value="non"
+                        data-bs-toggle="tooltip" title="Turn on Dark Mode">
+                </div>
+        </ul>
+        <div class="container-fluid">
+            <div class="section-head text-center" style="margin-top: 20px;">
+                <h2 id="whoo">Who We Are:</h2>
+                <p id="who">
+                    A company specialized in programming mobile applications, web systems and business solutions -
+                    developing websites and e-stores - e-marketing
+                </p>
+            </div>
+            <div class="slideshow-container" style="margin-left: auto; margin-right: auto; text-align:center">
+
+                <div class="mySlides fade">
+                    <img src="images/1.jpg" style="width:60%">
+                </div>
+
+                <div class="mySlides fade">
+                    <img src="images/4.jpg" style="width:60%">
+                </div>
+
+                <div class="mySlides fade">
+                    <img src="images/5.jpg" style="width:60%">
+                </div>
+
+            </div>
+            <br>
+
+            <div style="text-align:center">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div><br>
+            <hr>
+
+            <div class="section-head text-center">
+                <h2 id="service">Our service and offer</h2>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="column">
+                        <div class="conta">
+                            <img src="images/5.jpg" class="image">
+                            <div class="overlay">
+                                <div class="text">Peak Link</div>
+                              </div>
+                        </div>
+                        <div class="conta">
+                            <img src="images/4.jpg" class="image">
+                            <div class="overlay">
+                                <div class="text">Peak Link</div>
+                              </div>
+                        </div>
+                        <div class="conta">
+                            <img src="images/1.jpg" class="image">
+                            <div class="overlay">
+                                <div class="text">Peak Link</div>
+                              </div>
+                        </div>
+                        <div class="conta">
+                            <img src="images/2.jpg" class="image">
+                            <div class="overlay">
+                                <div class="text">Peak Link</div>
+                              </div>
+                        </div>
+                      </div>
+
+                    <div class="column">
+                        <div class="conta">
+                            <img src="images/1.jpg" class="image">
+                            <div class="overlay">
+                                <div class="text">Peak Link</div>
+                              </div>
+                        </div>
+                        <div class="conta">
+                            <img src="images/4.jpg" class="image">
+                            <div class="overlay">
+                                <div class="text">Peak Link</div>
+                              </div>
+                        </div>
+                        <div class="conta">
+                            <img src="images/3.jpg" class="image">
+                            <div class="overlay">
+                                <div class="text">Peak Link</div>
+                              </div>
+                        </div>
+                        <div class="conta">
+                            <img src="images/5.jpg" class="image">
+                            <div class="overlay">
+                                <div class="text">Peak Link</div>
+                              </div>
+                        </div>
+                      </div>
+
+                      <div class="column">
+                        <div class="conta">
+                            <img src="images/2.jpg" class="image">
+                            <div class="overlay">
+                                <div class="text">Peak Link</div>
+                              </div>
+                        </div>
+                        <div class="conta">
+                            <img src="images/5.jpg" class="image">
+                            <div class="overlay">
+                                <div class="text">Peak Link</div>
+                              </div>
+                        </div>
+                        <div class="conta">
+                            <img src="images/4.jpg" class="image">
+                            <div class="overlay">
+                                <div class="text">Peak Link</div>
+                              </div>
+                        </div>
+                        <div class="conta">
+                            <img src="images/3.jpg" class="image">
+                            <div class="overlay">
+                                <div class="text">Peak Link</div>
+                              </div>
+                        </div>
+                      </div>
+                  </div>
+                    
+            </div>
+        </div>
+
+    </div>
+    <script>
+        var myVar;
+
+        function myLoader() {
+            myVar = setTimeout(showPage, 2000);
+        }
+
+        function showPage() {
+            document.getElementById("loader").style.display = "none";
+            document.getElementById("myDiv").style.display = "block";
+        }
+        function myFunction() {
+            var element = document.body;
+            element.classList.toggle("dark-mode");
+        }
+        let slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+            let i;
+            let slides = document.getElementsByClassName("mySlides");
+            let dots = document.getElementsByClassName("dot");
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) { slideIndex = 1 }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex - 1].style.display = "block";
+            dots[slideIndex - 1].className += " active";
+            setTimeout(showSlides, 3000); // Change image every 5 seconds
+        }
+
+        // language for nav-bar
+
+        $(function () {
+
+            $("#arabic").click(function () {
+                localStorage.setItem("Lang", "arabic");
+                if (localStorage.getItem("Lang") == "arabic") {
+                    // start nav bar
+                    $("#langu").text("اللغة");
+                    $("#arabic").text("العربية");
+                    $("#english").text("الأنكليزية");
+                    $("#whoo").text('من نحن');
+                    $("#service").text('خدماتنا وعروضنا');
+                    $('#who').text(`شركة متخصصة في مجال برمجة تطبيقات الهاتف المحمول وأنظمة الويب وحلول الأعمال - تطوير المواقع والمتاجر الإلكترونية- التسويق الإلكتروني`);
+                    
+                }
+                else if (localStorage.getItem("Lang") == "english") {
+                    // start nav bar
+                    $("#langu").text("language");
+                    $("#arabic").text("Arabic");
+                    $("#english").text("English");
+                    // end nav bar
+                    $("#service").text('Our service and offer');
+                    $("#whoo").text("Who We Are")
+                    $("#who").text(`A company specialized in programming mobile applications, web systems and business solutions - developing websites and e-stores - e-marketing
+			`);
+                }
+            })
+            $("#english").click(function () {
+                localStorage.setItem("Lang", "english");
+                if (localStorage.getItem("Lang") == "arabic") {
+                    // start nav bar
+                    $("#langu").text("اللغة");
+                    $("#arabic").text("العربية");
+                    $("#english").text("الأنكليزية");
+                    // end nav bar
+                    //start about content
+                    $("#service").text('خدماتنا وعروضنا');
+                    $("#whoo").text('من نحن');
+                    $('#who').text(`شركة متخصصة في مجال برمجة تطبيقات الهاتف المحمول وأنظمة الويب وحلول الأعمال - تطوير المواقع والمتاجر الإلكترونية- التسويق الإلكتروني`);
+
+                }
+
+                else if (localStorage.getItem("Lang") == "english") {
+                    // start nav bar
+                    $("#langu").text("language");
+                    $("#arabic").text("Arabic");
+                    $("#english").text("English");
+                    // end nav bar
+                    // start about content
+                    $("#service").text('Our service and offer');
+                    $("#whoo").text("Who We Are")
+                    $("#who").text(`
+A company specialized in programming mobile applications, web systems and business solutions - developing websites and e-stores - e-marketing
+			`);
+                }
+            })
+
+        });
+        
+    </script>
+</body>
+
+</html>
